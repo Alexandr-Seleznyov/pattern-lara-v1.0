@@ -119,6 +119,7 @@ class User extends Authenticatable implements MustVerifyEmail
             return true;
         } else {
             $rolesArrayID = $this->rolesID();
+            if(count($rolesArrayID) == 0) return true; // User
             return in_array(3, $rolesArrayID); // User
         }
 

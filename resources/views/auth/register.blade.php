@@ -1,6 +1,9 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <hr>
+    <h1>auth/register.blade.php</h1>
+    <hr>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

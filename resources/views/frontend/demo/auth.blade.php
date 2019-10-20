@@ -22,18 +22,21 @@
     <a href="{{ route('login') }}" target="_blank">Login</a>
     <br>
 
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+    {{--<form action="{{ route('logout') }}" method="POST">--}}
+        {{--@csrf--}}
+        {{--<button type="submit">Logout</button>--}}
+    {{--</form>--}}
 
-
-    <a href="{{ route('register') }}" target="_blank">Register</a>
+    <a href="{{ route('logout') }}" target="_blank">Logout</a>
     <br>
     <br>
 
-    <a href="{{ route('frontend.dashboard') }}" target="_blank">Страница только для верифицированных пользователей - dashboard</a>
-    <br>
-    <br>
+    {{--<a href="{{ route('register') }}" target="_blank">Register</a>--}}
+    {{--<br>--}}
+    {{--<br>--}}
+
+    {{--<a href="{{ route('frontend.dashboard') }}" target="_blank">Страница только для верифицированных пользователей - dashboard</a>--}}
+    {{--<br>--}}
+    {{--<br>--}}
 
 @endsection

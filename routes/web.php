@@ -59,6 +59,17 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     });
 
     Auth::routes(['verify' => true]);
+
+    Route::get('logout', function(){
+        auth()->logout();
+        return redirect(route('frontend.home'));
+    })->name('logout');
+
+    Route::group(['namespace' => 'Authapi', 'as' => 'authapi.'], function () {
+
+        include_route_files(__DIR__.'/Authapi/');
+
+    });
 });
 
 

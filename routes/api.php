@@ -13,12 +13,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
+    Route::group(['namespace' => 'V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
+
+        Route::post('register', 'AuthController@register')->name('register');
+        Route::post('login', 'AuthController@login')->name('login');
+
+    });
 });
 
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::post('/register', 'Api\V1\AuthController@register');
-    Route::post('/login', 'Api\V1\AuthController@login');
-});
+////Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
+//Route::group(['namespace' => 'Api'], function () {
+////    Route::group(['prefix' => 'v1'], function() {
+//    Route::group(['namespace' => 'V1', 'prefix' => 'v1'], function () {
+//
+//        Route::post('register', 'AuthController@register');
+//        Route::post('login', 'AuthController@login')->name('login');
+//
+//    });
+//});

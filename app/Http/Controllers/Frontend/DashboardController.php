@@ -22,6 +22,6 @@ class DashboardController extends Controller
         if ($user->isBack()) return view('backend.dashboard');
         if ($user->isFront()) return view('frontend.dashboard');
 
-        return redirect()->route('home');
+        return redirect()->route('frontend.home');
     }
 }

@@ -47,7 +47,7 @@ class RolesTableSeeder extends Seeder
         $result[] = [
             'id' => 3,
             'title' => 'User',
-            'description' => 'Only front',
+            'description' => 'Only front (default)',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

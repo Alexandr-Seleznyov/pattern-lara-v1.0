@@ -13,7 +13,3 @@ Route::group(['middleware' => 'auth'], function () {
         ->middleware('verified');
 
 });
-
-
-
-include('demo.php');

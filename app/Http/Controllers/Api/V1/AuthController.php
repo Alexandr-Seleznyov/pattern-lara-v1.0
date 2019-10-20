@@ -13,9 +13,11 @@ class AuthController extends Controller
     {
         $validateDate = $request->validate([
             'name' => 'required|max:55',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ]);
+
+        $validateDate['password'] = bcrypt($request->password);
 
         $user = User::create($validateDate);
 
@@ -28,9 +30,27 @@ class AuthController extends Controller
     }
 
 
+
     public function login(Request $request)
     {
+        $loginDate = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+//            'abc' => 'required',
+        ]);
 
+        if(!auth()->attempt($loginDate)) {
+            return response([
+                'message' => 'Invalid credentials',
+            ]);
+        }
+
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+
+        return response([
+            'user' => auth()->user(),
+            'access_token' => $accessToken,
+        ]);
     }
 
 }
