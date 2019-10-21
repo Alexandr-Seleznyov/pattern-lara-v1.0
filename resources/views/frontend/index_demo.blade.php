@@ -15,4 +15,10 @@
 
     <a href="{{ route('frontend.dashboard') }}" target="_blank">Страница только для верифицированных пользователей - dashboard</a>
     <br>
+
+
+    <a href="http://pl1-client.loc/oauth2_client/auth_redirection.php" target="_blank">Demo - Авторизация и вывод инфо о пользователе со стороннего сайта (http://pl1-client.loc)</a>
+    <br>
+
+
 @endsection

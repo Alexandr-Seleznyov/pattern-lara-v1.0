@@ -36,7 +36,6 @@ class AuthController extends Controller
         $loginDate = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-//            'abc' => 'required',
         ]);
 
         if(!auth()->attempt($loginDate)) {

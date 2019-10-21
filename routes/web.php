@@ -50,13 +50,9 @@ Route::get('setlocale/{lang}', function ($lang) {
 
 /*
  * Frontend Routes
- * Namespaces indicate folder structure
  */
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function() {
 
-    Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
-        include_route_files(__DIR__ . '/frontend/');
-    });
 
     Auth::routes(['verify' => true]);
 
@@ -65,11 +61,12 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
         return redirect(route('frontend.home'));
     })->name('logout');
 
-    Route::group(['namespace' => 'Authapi', 'as' => 'authapi.'], function () {
 
-        include_route_files(__DIR__.'/Authapi/');
 
+    Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+        include_route_files(__DIR__ . '/frontend/');
     });
+
 });
 
 
