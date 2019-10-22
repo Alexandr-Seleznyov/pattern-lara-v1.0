@@ -2,7 +2,7 @@
 
 @section('content')
     <hr>
-    <h1>auth/confirm.blade.php</h1>
+    <h1>auth/pssword/confirm.blade.php</h1>
     <hr>
     <div class="container">
         <div class="row justify-content-center">

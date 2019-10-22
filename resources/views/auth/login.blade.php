@@ -68,16 +68,12 @@
                                         {{ __('Login') }}
                                     </button>
 
-                                    {{--:TODO Забыли пароль--}}
-                                    {{--@if (Route::has('password.request'))--}}
-                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-                                    <a class="btn btn-link" href="">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                    {{--@endif--}}
 
                                     {{--:TODO Регистрация--}}
-                                    <a class="btn btn-link" href="">
+                                    <a class="btn btn-link" href="{{ route('register') }}">
                                         Register
                                     </a>
 

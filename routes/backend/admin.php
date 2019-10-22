@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'HomeController@index')->name('admin');
+Route::get('/', 'HomeController@index')->name('home');

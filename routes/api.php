@@ -20,10 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::group(['namespace' => 'V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
 
+        // For demo
         Route::middleware('auth:api')->get('/user', 'UserController@get');
 
 //        Route::post('register', 'AuthController@register')->name('register');
 //        Route::post('login', 'AuthController@login')->name('login');
+
+
+        // TODO: Поставить проверку middleware('auth:api'), после чего проверить админку
+        Route::resource('users', 'UserController',
+            ['except' => ['create', 'edit']]);
 
     });
 });

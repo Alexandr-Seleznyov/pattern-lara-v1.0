@@ -19,9 +19,9 @@ class DashboardController extends Controller
         $user = Auth::user();
         if (!isset($user)) return redirect()->route('login');
 
-        if ($user->isBack()) return view('backend.dashboard');
+        if ($user->isBack()) return redirect()->route('admin.home');
         if ($user->isFront()) return view('frontend.dashboard');
 
-        return redirect()->route('frontend.home');
+        return redirect(route('frontend.home'));
     }
 }

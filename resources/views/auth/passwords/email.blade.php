@@ -2,7 +2,7 @@
 
 @section('content')
     <hr>
-    <h1>auth/login.blade.php</h1>
+    <h1>auth/pssword/email.blade.php</h1>
     <hr>
     <div class="container">
         <div class="row justify-content-center">
