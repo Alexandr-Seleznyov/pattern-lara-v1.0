@@ -1,3 +1,5 @@
 <?php
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function(){
+    return view('backend.dashboard');
+})->where('path', '.*')->name('home');

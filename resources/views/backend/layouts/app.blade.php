@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <script src="{{ asset('js/app_back.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +21,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app"></div>
+    <h1>header - Admin</h1>
+    <script>
+        // console.log(app);
+        console.log(window);
+    </script>
+    <div id="app">
+        <main class="content">
+            @yield('content')
+        </main>
+        {{--<router-view></router-view>--}}
+    </div>
+    {{--<script src="{{ asset('js/app_back.js') }}" defer></script>--}}
 </body>
 </html>
