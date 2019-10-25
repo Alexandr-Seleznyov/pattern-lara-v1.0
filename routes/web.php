@@ -89,9 +89,3 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'prefix' => 'admin', '
         include_route_files(__DIR__.'/backend/');
 
 });
-
-
-
-Route::get('/test', function(){
-    return view('backend.users.index');
-})->where('path', '.*');

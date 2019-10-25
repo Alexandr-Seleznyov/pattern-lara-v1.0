@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::group(['namespace' => 'V1', 'prefix' => 'v1', 'as' => 'v1.'], function () {
 
@@ -28,7 +29,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
 
         // TODO: Поставить проверку middleware('auth:api'), после чего проверить админку
-        Route::resource('users', 'UserController',
+        Route::middleware('auth:api')->resource('users', 'UserController',
             ['except' => ['create', 'edit']]);
 
     });

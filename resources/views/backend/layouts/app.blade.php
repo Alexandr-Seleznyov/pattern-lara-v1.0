@@ -22,16 +22,12 @@
 </head>
 <body>
     <h1>header - Admin</h1>
-    <script>
-        // console.log(app);
-        console.log(window);
-    </script>
+
     <div id="app">
         <main class="content">
-            @yield('content')
+            {{--@yield('content')--}}
+            <app></app>
         </main>
-        {{--<router-view></router-view>--}}
     </div>
-    {{--<script src="{{ asset('js/app_back.js') }}" defer></script>--}}
 </body>
 </html>

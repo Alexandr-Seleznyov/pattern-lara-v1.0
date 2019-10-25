@@ -11,34 +11,19 @@ import VueRouter from 'vue-router';
 
 window.Vue.use(VueRouter);
 
+// import App from './components/layout/App.vue'
 import DashboardLayout from './components/layout/DashboardLayout.vue'
-// import DashboardLayout from './components/api/v1/DashboardLayout.vue';
-import App from './components/App.vue'
-import UsersIndex from './components/api/v1/users/UsersIndex.vue';
-import UsersCreate from './components/api/v1/users/UsersCreate.vue';
-import UsersEdit from './components/api/v1/users/UsersEdit.vue';
 
-import Test from './components/Test.vue';
+import UsersIndex from './components/admin/v1/users/UsersIndex.vue';
+import UsersCreate from './components/admin/v1/users/UsersCreate.vue';
+import UsersEdit from './components/admin/v1/users/UsersEdit.vue';
+
 
 const routes = [
-    {
-        path: '/test',
-        components: {
-            UsersIndex: UsersIndex
-        }
-    },
-    {
-        path: '/admin',
-        components: {
-            UsersIndex: UsersIndex
-        }
-    },
-    // { path: '/admin', components: DashboardLayout, name: 'admin' },
-    // { path: '/admin', components: { usersIndex: UsersIndex }, name: 'users' },
-    // // { path: '/admin', components: { dashboardLayout: DashboardLayout }, name: 'dashboardLayout' },
-    // { path: '/admin/users', components: { usersIndex: UsersIndex }, name: 'users' },
-    // { path: '/admin/users/create', component: UsersCreate, name: 'usersCreate' },
-    // { path: '/admin/users/edit/:id', component: UsersEdit, name: 'usersEdit' },
+    { path: '/admin', component: DashboardLayout, name: 'dashboard' },
+    { path: '/admin/users', component: UsersIndex, name: 'usersIndex' },
+    { path: '/admin/users/create', component: UsersCreate, name: 'usersCreate' },
+    { path: '/admin/users/edit/:id', component: UsersEdit, name: 'usersEdit' },
 ];
 
 const router = new VueRouter({
@@ -59,6 +44,11 @@ const router = new VueRouter({
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.component(
+    'app',
+    require('./components/layout/App.vue').default
+);
 
 // Vue.component(
 //     'example-component',
@@ -86,10 +76,6 @@ const router = new VueRouter({
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-// const app = new Vue({
-//     el: '#app',
-// });
 
 const app = new Vue({
     router

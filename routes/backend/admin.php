@@ -1,5 +1,5 @@
 <?php
 
-Route::get('/', function(){
-    return view('backend.dashboard');
+Route::get('/{any?}', function(){
+    return view('backend.layouts.app');
 })->where('path', '.*')->name('home');

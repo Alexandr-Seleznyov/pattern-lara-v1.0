@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link :to="{name: 'users'}" class="btn btn-default">Все пользователи</router-link>
+            <router-link :to="{name: 'usersIndex'}" class="btn btn-default">Все пользователи</router-link>
         </div>
 
         <div class="panel panel-default">
@@ -48,7 +48,7 @@
                 var newUser = app.user;
                 axios.post('/api/v1/users', newUser)
                     .then(function (resp) {
-                        app.$router.push({path: '/users'});
+                        app.$router.push({path: '/admin/users'});
                     })
                     .catch(function (resp) {
                         console.log(resp);
