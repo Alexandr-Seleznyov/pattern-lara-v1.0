@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
 
+    // Not used
     public function register(Request $request)
     {
         $validateDate = $request->validate([
@@ -31,6 +32,7 @@ class AuthController extends Controller
 
 
 
+    // Not used
     public function login(Request $request)
     {
         $loginDate = $request->validate([

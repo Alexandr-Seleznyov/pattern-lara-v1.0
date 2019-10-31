@@ -12,7 +12,7 @@ import VueRouter from 'vue-router';
 window.Vue.use(VueRouter);
 
 // import App from './components/layout/App.vue'
-import DashboardLayout from './components/layout/DashboardLayout.vue'
+import DashboardLayout from './components/admin/v1/dashboard/DashboardLayout.vue'
 
 import UsersIndex from './components/admin/v1/users/UsersIndex.vue';
 import UsersCreate from './components/admin/v1/users/UsersCreate.vue';
@@ -47,7 +47,7 @@ const router = new VueRouter({
 
 Vue.component(
     'app',
-    require('./components/layout/App.vue').default
+    require('./components/admin/v1/layout/App.vue').default
 );
 
 // Vue.component(

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $objectApiName = 'Users';
+
+
     public function index()
     {
         return User::all();
@@ -24,10 +27,23 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $action = 'update';
+        $userCurrent = $request->user();
+        $accessApi = $userCurrent->getAccessApi($this->objectApiName, $action, $id);
 
-        return $user;
+        if($accessApi['status']){
+            $user = User::findOrFail($id);
+
+            $validateDate = $request->validate([
+                'name' => 'required|max:55',
+                'email' => 'required|email|unique:users',
+            ]);
+
+            $user->update($validateDate);
+            return $user;
+        }
+
+        return json_encode($accessApi);
     }
 
 

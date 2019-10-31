@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Http\Helpers\ObjectsApi;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -69,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array
      */
-    public function rolesID()
+    public function getRolesID()
     {
         $ur = $this->usersRoles;
         $rolesArrayID = [];
@@ -88,16 +89,15 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function isBackAndFront()
     {
-        $result = false;
-        $rolesArrayID = $this->rolesID();
+        $rolesID = $this->getRolesID();
 
-        if(in_array(1, $rolesArrayID)) return true;  // Super Admin
-        if(in_array(5, $rolesArrayID)) return false; // Banned
-        if(in_array(2, $rolesArrayID)) return true;  // Admin
-        if(in_array(4, $rolesArrayID)) return true;  // Content
-        if(in_array(3, $rolesArrayID)) return false; // User
+        if(in_array(1, $rolesID)) return true;  // Super Admin
+        if(in_array(5, $rolesID)) return false; // Banned
+        if(in_array(2, $rolesID)) return true;  // Admin
+        if(in_array(4, $rolesID)) return true;  // Content
+        if(in_array(3, $rolesID)) return false; // User
 
-        return $result;
+        return false;
     }
 
 
@@ -115,13 +115,49 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function isFront()
     {
+        $rolesID = $this->getRolesID();
+
         if($this->isBackAndFront()) {
             return true;
         } else {
-            $rolesArrayID = $this->rolesID();
-            if(count($rolesArrayID) == 0) return true; // User
-            return in_array(3, $rolesArrayID); // User
+            if(count($rolesID) == 0) return true; // User
+            return in_array(3, $rolesID); // User
         }
 
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSuperAdmin()
+    {
+        $rolesID = $this->getRolesID();
+        if(in_array(1, $rolesID)) return true;  // Super Admin
+
+        return false;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        $rolesID = $this->getRolesID();
+        if(in_array(5, $rolesID)) return false; // Banned
+        if(in_array(2, $rolesID)) return true;  // Admin
+
+        return false;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getAccessApi($objectApiName, $action, $id = null)
+    {
+        $objectsApi = new ObjectsApi($this);
+
+        return $objectsApi->getAccessApi($objectApiName, $action, $id);
     }
 }

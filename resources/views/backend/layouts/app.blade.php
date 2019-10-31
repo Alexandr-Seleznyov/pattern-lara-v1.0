@@ -21,13 +21,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1>header - Admin</h1>
+<h1>header - Admin</h1>
 
-    <div id="app">
-        <main class="content">
-            {{--@yield('content')--}}
-            <app></app>
-        </main>
-    </div>
+<div id="app">
+    <main class="content">
+        {{--@yield('content')--}}
+        <app></app>
+    </main>
+</div>
 </body>
 </html>

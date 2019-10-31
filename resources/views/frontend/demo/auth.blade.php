@@ -9,6 +9,9 @@
     ?>
     @if (isset($user))
         <h4>Авторизированный пользователь - <span class="badge badge-secondary">{{ $user->name }}</span></h4>
+
+        <h5>isSuperAdmin - <span class="badge {{ $user->isSuperAdmin() ? 'badge-success' : 'badge-danger' }}">{{ $user->isSuperAdmin() ? 'Да' : 'Нет' }}</span></h5>
+
         <h5>Доступ к админке - <span class="badge {{ $user->isBack() ? 'badge-success' : 'badge-danger' }}">{{ $user->isBack() ? 'Да' : 'Нет' }}</span></h5>
         <h5>Доступ к фронту - <span class="badge {{ $user->isFront() ? 'badge-success' : 'badge-danger' }}">{{ $user->isFront() ? 'Да' : 'Нет' }}</span></h5>
     @else

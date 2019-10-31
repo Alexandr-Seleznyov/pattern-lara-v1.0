@@ -17,3 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
    .browserSync({
        proxy: 'http://pl1.loc:80'
    });
+
+
