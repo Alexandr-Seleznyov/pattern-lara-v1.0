@@ -11,23 +11,18 @@
 
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-    <script src="{{ asset('js/app_back.js') }}" defer></script>
+    <script src="{{ asset('js/backend/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/backend/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<h1>header - Admin</h1>
 
-<div id="app">
-    <main class="content">
-        {{--@yield('content')--}}
-        <app></app>
-    </main>
-</div>
+    <div id="app"></div>
+
 </body>
 </html>
