@@ -47,6 +47,13 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+
+    public function usersDetails()
+    {
+        return $this->hasOne('App\Models\Auth\UsersDetails', 'users_id');
+    }
+
+
     /**
      * Get array of models roles
      *
@@ -59,6 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
         foreach($ur as $value){
             $rolesArray[] = $value->roles;
+        }
+
+        if (count($ur) == 0) {
+            $rolesArray[] = Roles::find(3);
         }
 
         return $rolesArray;

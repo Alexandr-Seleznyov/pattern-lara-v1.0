@@ -8,31 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
+import router from './components/admin/v1/routes/routes.js'
+import BootstrapVue from 'bootstrap-vue';
+import App from './components/admin/v1/layout/App.vue'
+import PreloaderTable from './components/admin/v1/parts/PreloaderTable'
 
 window.Vue.use(VueRouter);
+window.Vue.use(BootstrapVue);
 
-// import App from './components/layout/App.vue'
-import DashboardLayout from './components/admin/v1/dashboard/DashboardLayout.vue'
-
-import UsersIndex from './components/admin/v1/users/UsersIndex.vue';
-import UsersCreate from './components/admin/v1/users/UsersCreate.vue';
-import UsersEdit from './components/admin/v1/users/UsersEdit.vue';
-
-
-const routes = [
-    { path: '/admin', component: DashboardLayout, name: 'dashboard' },
-    { path: '/admin/users', component: UsersIndex, name: 'usersIndex' },
-    { path: '/admin/users/create', component: UsersCreate, name: 'usersCreate' },
-    { path: '/admin/users/edit/:id', component: UsersEdit, name: 'usersEdit' },
-];
-
-const router = new VueRouter({
-    routes,
-    mode: 'history', //removes # (hashtag) from url
-    fallback: true, //router should fallback to hash (#) mode when the browser does not support history.pushState
-});
-
-// const router = new VueRouter({ routes });
+Vue.component('app-preloader-table', PreloaderTable)
 
 /**
  * The following block of code may be used to automatically register your
@@ -41,6 +25,8 @@ const router = new VueRouter({
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
+// Vue.component('pagination', require('laravel-vue-pagination'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
@@ -77,11 +63,6 @@ const router = new VueRouter({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     router
-// }).$mount('#app');
-
-import App from './components/admin/v1/layout/App.vue'
 
 new Vue({
     el: '#app',

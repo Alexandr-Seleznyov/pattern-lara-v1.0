@@ -61,6 +61,19 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ];
 
+        for($i = 0; $i < 20; $i++){
+            $result[] = [
+                'id' => $i + 4,
+                'name' => 'User - '. $i,
+                'email' => 'user'. $i .'@user.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => bcrypt('111111'),
+                'remember_token' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
         return $result;
     }
 

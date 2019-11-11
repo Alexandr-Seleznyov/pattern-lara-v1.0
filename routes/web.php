@@ -89,3 +89,9 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'prefix' => 'admin', '
         include_route_files(__DIR__.'/backend/');
 
 });
+
+//Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'prefix' => 'demo-coreui', 'middleware' => ['auth','admin']], function () {
+//    Route::get('/{any?}', function(){
+//        return view('backend.layouts.app_demo_coreui');
+//    })->where('path', '.*');
+//});

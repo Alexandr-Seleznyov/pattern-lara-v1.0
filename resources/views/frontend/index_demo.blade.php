@@ -1,6 +1,18 @@
 @extends('frontend.layouts.app')
 @section('content')
 
+    <?php
+//        use App\Models\Auth\User;
+//        $paginator = User::paginate(3);
+//
+//
+//        $paginator->getCollection()->transform(function ($value) {
+//            $value['test'] = 123;
+//            return $value;
+//        });
+//        dd($paginator->getCollection());
+    ?>
+
     <h1>index_demo</h1>
     <hr>
 
