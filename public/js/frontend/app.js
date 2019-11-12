@@ -37040,9 +37040,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OSPanel2\OSPanel\domains\pattern-lara-v1.0\resources\js\frontend\app.js */"./resources/js/frontend/app.js");
-__webpack_require__(/*! D:\OSPanel2\OSPanel\domains\pattern-lara-v1.0\resources\sass\frontend\app.scss */"./resources/sass/frontend/app.scss");
-module.exports = __webpack_require__(/*! D:\OSPanel2\OSPanel\domains\pattern-lara-v1.0\resources\sass\backend\app.scss */"./resources/sass/backend/app.scss");
+__webpack_require__(/*! D:\OSPanel2\domains\pattern-lara-v1.0\resources\js\frontend\app.js */"./resources/js/frontend/app.js");
+__webpack_require__(/*! D:\OSPanel2\domains\pattern-lara-v1.0\resources\sass\frontend\app.scss */"./resources/sass/frontend/app.scss");
+module.exports = __webpack_require__(/*! D:\OSPanel2\domains\pattern-lara-v1.0\resources\sass\backend\app.scss */"./resources/sass/backend/app.scss");
 
 
 /***/ })

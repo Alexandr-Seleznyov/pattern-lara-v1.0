@@ -11,81 +11,90 @@
                     </div>
 
                     <b-navbar type="light" variant="light">
+                        <div class="row pl-row">
+                            <div class="col col-xl-1">
+                                <p class="app-label">ID</p>
+                                <input class="form-control"
+                                       type="number"
+                                       :value="usersSearch.id"
+                                       @input="filterInput('id', $event.target.value)"
+                                       @keydown="startFilter"
+                                       style="color: black;">
+                                <!--width: 65px;-->
+                            </div>
 
-                        <div>
-                            <p class="app-label">ID</p>
-                            <input class="form-control"
-                                   type="number"
-                                   :value="usersSearch.id"
-                                   @input="filterInput('id', $event.target.value)"
-                                   @keydown="startFilter"
-                                   style="width: 65px; color: black;">
+                            <div class="col col-xl-2">
+                                <p class="app-label">Фамилия</p>
+                                <input class="form-control"
+                                       type="text"
+                                       :value="usersSearch.last_name"
+                                       @input="filterInput('last_name', $event.target.value)"
+                                       @keydown="startFilter"
+                                       style="color: black;">
+                                <!--width: 120px;-->
+                            </div>
+
+                            <div class="col col-xl-2">
+                                <p class="app-label">Email</p>
+                                <input class="form-control"
+                                       type="text"
+                                       :value="usersSearch.email"
+                                       @input="filterInput('email', $event.target.value)"
+                                       @keydown="startFilter"
+                                       style="color: black;">
+                                <!--width: 120px;-->
+                            </div>
+
+                            <div class="col col-xl-1">
+                                <p class="app-label">Вериф.</p>
+                                <select class="form-control" @input="filterInput('is_verified', $event.target.value)">
+                                    <option value="0" selected></option>
+                                    <option class="badge-success" value="1">Да</option>
+                                    <option class="badge-danger" value="2">Нет</option>
+                                </select>
+                                <!--style="width: 120px;"-->
+                            </div>
+
+                            <div class="col col-xl-1">
+                                <p class="app-label">Роль</p>
+                                <select class="form-control" @input="filterInput('role_id', $event.target.value)">
+                                    <option value="0" selected></option>
+                                    <option v-for="role in all_roles" :class="'badge-' + role.type" :value="role.id">{{ role.title }}</option>
+                                </select>
+                                <!--style="width: 120px;"-->
+                            </div>
+
+                            <div class="col col-xl-2">
+                                <p class="app-label">С (дата создания)</p>
+                                <input class="form-control"
+                                       type="date"
+                                       :value="usersSearch.date_start"
+                                       @input="filterInput('date_start', $event.target.value)"
+                                       @keydown="startFilter"
+                                       style="color: black;">
+                                <!--width: 150px;-->
+                            </div>
+
+                            <div class="col col-xl-2">
+                                <p class="app-label">По (дата создания)</p>
+                                <input class="form-control"
+                                       type="date"
+                                       :value="usersSearch.date_end"
+                                       @input="filterInput('date_end', $event.target.value)"
+                                       @keydown="startFilter"
+                                       style="color: black;">
+                                <!--width: 150px;-->
+                            </div>
+
+                            <div class="col col-xl-1">
+                                <b-button variant="outline-success"
+                                          class="my-2 my-sm-0"
+                                          style="margin-top: 20px !important; margin-left: 5px;"
+                                          @click="usersFilter">
+                                    Поиск
+                                </b-button>
+                            </div>
                         </div>
-
-                        <div>
-                            <p class="app-label">Фамилия</p>
-                            <input class="form-control"
-                                   type="text"
-                                   :value="usersSearch.last_name"
-                                   @input="filterInput('last_name', $event.target.value)"
-                                   @keydown="startFilter"
-                                   style="width: 120px; color: black;">
-                        </div>
-
-                        <div>
-                            <p class="app-label">Email</p>
-                            <input class="form-control"
-                                   type="text"
-                                   :value="usersSearch.email"
-                                   @input="filterInput('email', $event.target.value)"
-                                   @keydown="startFilter"
-                                   style="width: 120px; color: black;">
-                        </div>
-
-                        <div>
-                            <p class="app-label">Вериф.</p>
-                            <select class="form-control" @input="filterInput('is_verified', $event.target.value)" style="width: 120px;">
-                                <option value="0" selected></option>
-                                <option class="badge-success" value="1">Да</option>
-                                <option class="badge-danger" value="2">Нет</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <p class="app-label">Роль</p>
-                            <select class="form-control" @input="filterInput('role_id', $event.target.value)" style="width: 120px;">
-                                <option value="0" selected></option>
-                                <option v-for="role in all_roles" :class="'badge-' + role.type" :value="role.id">{{ role.title }}</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <p class="app-label">С (дата создания)</p>
-                            <input class="form-control"
-                                   type="date"
-                                   :value="usersSearch.date_start"
-                                   @input="filterInput('date_start', $event.target.value)"
-                                   @keydown="startFilter"
-                                   style="width: 150px; color: black;">
-                        </div>
-
-                        <div>
-                            <p class="app-label">По (дата создания)</p>
-                            <input class="form-control"
-                                   type="date"
-                                   :value="usersSearch.date_end"
-                                   @input="filterInput('date_end', $event.target.value)"
-                                   @keydown="startFilter"
-                                   style="width: 150px; color: black;">
-                        </div>
-
-
-                        <b-button variant="outline-success"
-                               class="my-2 my-sm-0"
-                               style="margin-top: 20px !important; margin-left: 5px;"
-                               @click="usersFilter">
-                            Поиск
-                        </b-button>
                     </b-navbar>
 
                     <app-preloader-table v-if="loading"></app-preloader-table>
@@ -237,11 +246,12 @@
                     })
                     .then(function (resp) {
                         app.loading = false;
-                        // console.log(resp['data']);
+                        // console.log(resp);
                         app.total = resp['data']['pagination']['total'];
                         app.per_page = resp['data']['pagination']['per_page'];
                         app.current_page = resp['data']['pagination']['current_page'];
                         app.current_user = resp['data']['current_user'];
+                        app.$emit('setCurrentUser', {current_user: app.current_user});
                         app.current_roles = resp['data']['current_roles'];
                         app.refreshItems(resp['data']['data']['data']);
                         app.all_roles = app.setTypeRole(resp['data']['roles_all'], null);
@@ -401,5 +411,14 @@
     .app-label {
         margin-left: 5px;
         margin-bottom: 0;
+    }
+    .pl-row{
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+    }
+    .pl-row .col {
+        padding-left: 1px;
+        padding-right: 1px;
     }
 </style>
