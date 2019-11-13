@@ -8,15 +8,21 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
-import router from './components/admin/v1/routes/routes.js'
+import router from './components/admin/v1/routes/routes.js';
 import BootstrapVue from 'bootstrap-vue';
-import App from './components/admin/v1/layout/App.vue'
-import PreloaderTable from './components/admin/v1/parts/PreloaderTable'
+import App from './components/admin/v1/layout/App.vue';
+import PreloaderTable from './components/admin/v1/parts/PreloaderTable';
+import Messager from './components/admin/v1/parts/Messager.vue';
+// import Bus from 'bus.js';
+
 
 window.Vue.use(VueRouter);
 window.Vue.use(BootstrapVue);
+// window.Vue.use(Bus);
 
-Vue.component('app-preloader-table', PreloaderTable)
+Vue.component('app-preloader-table', PreloaderTable);
+Vue.component('messager', Messager);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -63,8 +69,10 @@ Vue.component('app-preloader-table', PreloaderTable)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// bus.js (создаем общую шину и экспортируем)
+// export const bus = new Vue();
 
-new Vue({
+const vm = new Vue({
     el: '#app',
     router,
     template: '<App/>',

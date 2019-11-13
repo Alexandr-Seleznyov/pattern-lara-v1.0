@@ -219,7 +219,8 @@
                 },
 
                 all_roles: null,
-                loading: false
+                loading: false,
+                errorMessage: null
 
             }
         },
@@ -251,13 +252,18 @@
                         app.per_page = resp['data']['pagination']['per_page'];
                         app.current_page = resp['data']['pagination']['current_page'];
                         app.current_user = resp['data']['current_user'];
-                        app.$emit('setCurrentUser', {current_user: app.current_user});
                         app.current_roles = resp['data']['current_roles'];
                         app.refreshItems(resp['data']['data']['data']);
                         app.all_roles = app.setTypeRole(resp['data']['roles_all'], null);
+                        // console.log(window);
+                        // vm.$refs.foo.showAlert();
                     })
                     .catch(function (resp) {
                         app.loading = false;
+
+                        // app.errorMessage = resp.response.data.message;
+                        app.errorMessage = 'Ошибка';
+
                         console.log(resp.response);
                         console.log("Не удалось загрузить пользователей");
                     });

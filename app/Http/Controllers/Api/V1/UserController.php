@@ -47,23 +47,7 @@ class UserController extends Controller
 
 
         $paginator->getCollection()->transform(function ($value) {
-            $newValue = [];
-
-            $newValue['id'] = $value->id;
-            $newValue['name'] = $value->name;
-            $newValue['email'] = $value->email;
-            $newValue['email_verified_at'] = isset($value->email_verified_at) ? date("Y-m-d", strtotime($value->email_verified_at)) : null;
-            $newValue['updated_at'] = isset($value->usersDetails->updated_at) ? date("Y-m-d", strtotime($value->usersDetails->updated_at)) : null;
-            $newValue['created_at'] = isset($value->usersDetails->created_at) ? date("Y-m-d", strtotime($value->usersDetails->created_at)) : null;
-
-            $newValue['last_name'] = $value->usersDetails->last_name;
-            $newValue['patronymic'] = $value->usersDetails->patronymic;
-            $newValue['gender'] = $value->usersDetails->gender;
-            $newValue['date_birthday'] = date("Y-m-d", strtotime($value->usersDetails->date_birthday));
-            $newValue['phone'] = $value->usersDetails->phone;
-            $newValue['roles'] = $value->roles();
-
-            return $newValue;
+            return $this->getUserFull($value);
         });
 
         $currentUser = $request->user();
@@ -88,13 +72,19 @@ class UserController extends Controller
 
 
 
+
     public function show($id)
     {
-//        $result = [];
-//        $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
+        $rolesAll = Roles::all();
 
-        return User::findOrFail($id);
-//        return $result;
+        $response = [
+            'user' => $this->getUserFull($user),
+            'roles' => $user->roles(),
+            'roles_all' => $rolesAll,
+        ];
+
+        return json_encode($response);
     }
 
 
@@ -300,6 +290,30 @@ class UserController extends Controller
         }
 
         return $users;
+    }
+
+
+    public function getUserFull(User $user)
+    {
+        if (!isset($user->id)) return $user;
+
+        $userFull = [];
+
+        $userFull['id'] = $user->id;
+        $userFull['name'] = $user->name;
+        $userFull['email'] = $user->email;
+        $userFull['email_verified_at'] = isset($user->email_verified_at) ? date("Y-m-d", strtotime($user->email_verified_at)) : null;
+        $userFull['updated_at'] = isset($user->usersDetails->updated_at) ? date("Y-m-d", strtotime($user->usersDetails->updated_at)) : null;
+        $userFull['created_at'] = isset($user->usersDetails->created_at) ? date("Y-m-d", strtotime($user->usersDetails->created_at)) : null;
+
+        $userFull['last_name'] = $user->usersDetails->last_name;
+        $userFull['patronymic'] = $user->usersDetails->patronymic;
+        $userFull['gender'] = $user->usersDetails->gender;
+        $userFull['date_birthday'] = date("Y-m-d", strtotime($user->usersDetails->date_birthday));
+        $userFull['phone'] = $user->usersDetails->phone;
+        $userFull['roles'] = $user->roles();
+
+        return $userFull;
     }
 
 }

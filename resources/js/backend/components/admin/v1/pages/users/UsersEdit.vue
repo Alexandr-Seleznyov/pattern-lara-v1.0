@@ -5,16 +5,16 @@
             <transition name="slide">
                 <b-card>
                     <div slot="header">
-                        <span style="font-size: 20px; font-weight: bold;">Пользователь</span>
+                        <span style="font-size: 20px; font-weight: bold;">Пользователь:</span>
+                        <span style="font-size: 18px;">{{ title_name }}</span>
                     </div>
 
                     <b-navbar type="light" variant="light">
                         <router-link :to="{name: 'Users'}" class="btn btn-primary">Все пользователи</router-link>
                     </b-navbar>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Создать нового пользователя</div>
-                        <div class="panel-body">
+                    <b-card style="padding: 10px;">
+
                             <form v-on:submit="saveForm()">
                                 <div class="row">
                                     <div class="col-xs-12 form-group">
@@ -34,8 +34,8 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
+
+                    </b-card>
 
                 </b-card>
             </transition>
@@ -69,9 +69,9 @@
                 app.userId = id;
                 axios.get('/api/v1/users/' + id)
                     .then(function (resp) {
-                        console.log(resp);
-                        app.user = resp.data;
-                        // app.title = app.user.
+                        console.log(resp['data']);
+                        app.user = resp.data.user;
+                        app.title_name = app.user.last_name + ' ' + app.user.name + ' ' + app.user.patronymic;
                     })
                     .catch(function () {
                         alert("Не удалось загрузить пользователя")

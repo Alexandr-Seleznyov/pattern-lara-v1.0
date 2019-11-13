@@ -23,6 +23,7 @@
           <!--<i class="icon-location-pin"></i>-->
         <!--</b-nav-item>-->
         <!--<DefaultHeaderDropdownAccnt/>-->
+        <messager></messager>
       </b-navbar-nav>
 
         <a href="/logout" class="nav-link">Logout</a>
@@ -33,6 +34,7 @@
 <script>
 import { Header as AppHeader, SidebarToggler, AsideToggler } from '@coreui/vue'
 // import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
+import Messager from '../parts/Messager.vue'
 
 export default {
   name: 'DefaultHeader',
@@ -40,7 +42,8 @@ export default {
     AsideToggler,
     AppHeader,
     // DefaultHeaderDropdownAccnt,
-    SidebarToggler
+    SidebarToggler,
+    Messager
   }
 }
 </script>
