@@ -23,7 +23,7 @@
           <!--<i class="icon-location-pin"></i>-->
         <!--</b-nav-item>-->
         <!--<DefaultHeaderDropdownAccnt/>-->
-        <messager></messager>
+        <messager @setMess="setMess"></messager>
       </b-navbar-nav>
 
         <a href="/logout" class="nav-link">Logout</a>

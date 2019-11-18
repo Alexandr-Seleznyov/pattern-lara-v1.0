@@ -1,4 +1,4 @@
-<template>
+<template @setMess="setMess">
     <div>
         <b-alert
                 :show="dismissCountDown"
@@ -45,6 +45,10 @@
 
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
+            },
+
+            setMess(mess){
+                this.dismissCountDown = this.dismissSecs;
             }
         }
     }
