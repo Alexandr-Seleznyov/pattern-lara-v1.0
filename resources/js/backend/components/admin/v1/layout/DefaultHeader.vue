@@ -23,7 +23,7 @@
           <!--<i class="icon-location-pin"></i>-->
         <!--</b-nav-item>-->
         <!--<DefaultHeaderDropdownAccnt/>-->
-        <messager @setMess="setMess"></messager>
+        <messager @setMess="console.log('test mess');"></messager>
       </b-navbar-nav>
 
         <a href="/logout" class="nav-link">Logout</a>

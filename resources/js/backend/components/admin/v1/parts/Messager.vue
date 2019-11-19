@@ -21,7 +21,7 @@
     // import { bus } from '../../../../bus.js';
 
     export default {
-        name: "Messager",
+        name: "messager",
 
         data() {
             return {
@@ -30,7 +30,7 @@
             }
         },
 
-        mounted: {
+        mounted() {
             // bus.$on('show-alert', this.showAlert);
             // this.$root.$on('show-alert', this.showAlert);
             // Vue.$on('test', function (msg) {
@@ -47,8 +47,8 @@
                 this.dismissCountDown = this.dismissSecs
             },
 
-            setMess(mess){
-                this.dismissCountDown = this.dismissSecs;
+            setMess(){
+                console.log('messss - setMes');
             }
         }
     }
