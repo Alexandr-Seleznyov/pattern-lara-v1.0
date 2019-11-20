@@ -1,17 +1,13 @@
 <template>
-
     <b-row>
         <b-col>
+            <app-preloader-table v-if="loading"></app-preloader-table>
             <transition name="slide">
                 <b-card>
                     <div slot="header">
                         <span style="font-size: 20px; font-weight: bold;">Пользователь:</span>
                         <span style="font-size: 18px;">{{ title_name }}</span>
                     </div>
-
-                    <b-navbar type="light" variant="light">
-                        <router-link :to="{name: 'Users'}" class="btn btn-primary">Все пользователи</router-link>
-                    </b-navbar>
 
                     <b-card style="padding: 10px;">
 
@@ -28,11 +24,13 @@
                                         <input type="text" v-model="user.email" class="form-control">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12 form-group">
-                                        <button class="btn btn-success">Сохранить</button>
-                                    </div>
-                                </div>
+
+                                <b-navbar type="light" variant="light">
+                                    <button type="button" class="btn btn-warning" style="margin: 10px;"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp;&nbsp;Отмена</button>
+                                    <button type="submit" class="btn btn-success" style="margin: 10px;"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;&nbsp;Сохранить</button>
+                                    <!--<router-link :to="{name: 'Users'}" class="btn btn-info"><i class="nav-icon fa fa-users"></i> Все пользователи</router-link>-->
+                                </b-navbar>
+
                             </form>
 
                     </b-card>
@@ -45,6 +43,8 @@
 </template>
 
 <script>
+    import {bus} from '../../../../../bus.js';
+
     export default {
 
         data: function () {
@@ -54,7 +54,8 @@
                     name: '',
                     email: '',
                 },
-                title_name: null
+                title_name: null,
+                loading: false
             }
         },
 
@@ -64,17 +65,29 @@
 
         methods: {
             loadData() {
+                this.loading = true;
                 let app = this;
                 let id = app.$route.params.id;
                 app.userId = id;
                 axios.get('/api/v1/users/' + id)
                     .then(function (resp) {
+                        app.loading = false;
                         console.log(resp['data']);
                         app.user = resp.data.user;
                         app.title_name = app.user.last_name + ' ' + app.user.name + ' ' + app.user.patronymic;
+
+                        bus.$emit('setmess', {
+                            mess: 'Данные загружены',
+                            variant: 'info'
+                        });
                     })
-                    .catch(function () {
-                        alert("Не удалось загрузить пользователя")
+                    .catch(function (resp) {
+                        app.loading = false;
+                        console.log(resp.response);
+                        bus.$emit('setmess', {
+                            mess: 'Ошибка: ' + resp.response.data.message,
+                            variant: 'danger'
+                        });
                     });
             },
 
@@ -86,10 +99,20 @@
                 axios.patch('/api/v1/users/' + app.userId, newUser)
                     .then(function (resp) {
                         app.$router.replace('/admin/users');
+
+                        bus.$emit('setmess', {
+                            mess: 'Данные сохранены',
+                            variant: 'success'
+                        });
                     })
                     .catch(function (resp) {
-                        console.log(resp);
-                        alert("Не удалось изменить данные пользователя");
+                        console.log(resp.response);
+
+                        bus.$emit('setmess', {
+                            mess: 'Ошибка: ' + resp.response.data.message,
+                            variant: 'danger'
+                        });
+                        // alert("Не удалось изменить данные пользователя");
                     });
             }
         }

@@ -167,6 +167,7 @@
 
 <script>
     import Pagination from '../../parts/pagination.vue'
+    import {bus} from '../../../../../bus.js';
 
     export default {
 
@@ -219,9 +220,7 @@
                 },
 
                 all_roles: null,
-                loading: false,
-                errorMessage: null
-
+                loading: false
             }
         },
 
@@ -255,17 +254,18 @@
                         app.current_roles = resp['data']['current_roles'];
                         app.refreshItems(resp['data']['data']['data']);
                         app.all_roles = app.setTypeRole(resp['data']['roles_all'], null);
-                        // console.log(window);
-                        // vm.$refs.foo.showAlert();
+                        bus.$emit('setmess', {
+                            mess: 'Данные загружены',
+                            variant: 'info'
+                        });
                     })
                     .catch(function (resp) {
                         app.loading = false;
-
-                        // app.errorMessage = resp.response.data.message;
-                        app.errorMessage = 'Ошибка';
-
                         console.log(resp.response);
-                        console.log("Не удалось загрузить пользователей");
+                        bus.$emit('setmess', {
+                            mess: 'Ошибка: ' + resp.response.data.message,
+                            variant: 'danger'
+                        });
                     });
             },
 

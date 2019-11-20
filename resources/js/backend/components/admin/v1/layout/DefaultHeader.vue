@@ -23,7 +23,7 @@
           <!--<i class="icon-location-pin"></i>-->
         <!--</b-nav-item>-->
         <!--<DefaultHeaderDropdownAccnt/>-->
-        <messager @setMess="console.log('test mess');"></messager>
+          <messager></messager>
       </b-navbar-nav>
 
         <a href="/logout" class="nav-link">Logout</a>
@@ -35,15 +35,37 @@
 import { Header as AppHeader, SidebarToggler, AsideToggler } from '@coreui/vue'
 // import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
 import Messager from '../parts/Messager.vue'
+import {bus} from '../../../../bus.js';
 
 export default {
   name: 'DefaultHeader',
-  components: {
+
+    components: {
     AsideToggler,
     AppHeader,
     // DefaultHeaderDropdownAccnt,
     SidebarToggler,
     Messager
-  }
+  },
+
+    mounted() {
+        // bus.$emit('setmess', 'param message');
+    },
+
+    methods: {
+        // setMessage(){
+        //
+        // }
+    }
 }
 </script>
+
+
+<style scoped>
+  .navbar {
+    padding: 0 1rem;
+  }
+  .ml-auto, .mx-auto {
+    margin: auto;
+  }
+</style>

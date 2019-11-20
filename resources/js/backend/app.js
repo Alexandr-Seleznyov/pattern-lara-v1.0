@@ -15,7 +15,6 @@ import PreloaderTable from './components/admin/v1/parts/PreloaderTable';
 import Messager from './components/admin/v1/parts/Messager.vue';
 // import Bus from 'bus.js';
 
-
 window.Vue.use(VueRouter);
 window.Vue.use(BootstrapVue);
 // window.Vue.use(Bus);
