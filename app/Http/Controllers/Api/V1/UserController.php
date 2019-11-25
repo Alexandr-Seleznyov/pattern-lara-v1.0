@@ -97,12 +97,11 @@ class UserController extends Controller
 
         if($accessApi['status']){
             $user = User::findOrFail($id);
-            $userDetails = $user->userDetails;
+            $usersDetails = $user->usersDetails;
 
             $validateDate = $request->validate([
                 'name' => 'required|max:55',
-                'email' => 'required|email|unique:users',
-
+                'email' => 'required|email|unique:users,email,'.$id,
                 'last_name' => ['string', 'max:50', 'nullable'],
                 'patronymic' => ['string', 'max:50', 'nullable'],
                 'gender' => ['string', Rule::in('male','female'), 'nullable'],
@@ -110,7 +109,7 @@ class UserController extends Controller
             ]);
 
             $user->update($validateDate);
-            $userDetails->update($validateDate);
+            $usersDetails->update($validateDate);
 
             return $user;
         }

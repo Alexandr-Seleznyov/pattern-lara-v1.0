@@ -30,11 +30,11 @@ class ObjectsApi
     {
         if ($this->userCurrent->isSuperAdmin()) return ['status' => true];
 
-        return [
-            'status' => false,
-            'curent_id' => $this->userCurrent->id,
-            'isSuperAdmin' => $this->userCurrent->isSuperAdmin()
-        ];
+//        return [
+//            'status' => false,
+//            'curent_id' => $this->userCurrent->id,
+//            'isSuperAdmin' => $this->userCurrent->isSuperAdmin()
+//        ];
 
         $result = [
             'status' => false,
