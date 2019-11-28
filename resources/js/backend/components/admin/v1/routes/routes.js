@@ -11,6 +11,9 @@ import demo from './parts/demo.js'
 // Pages route
 import users from './parts/users.js'
 
+// Pages Lfm
+import lfm from './parts/lfm.js'
+
 // Errors errors
 import errors from './parts/errors.js'
 
@@ -30,6 +33,8 @@ const routes = [
             },
 
             ...users,
+
+            ...lfm,
 
             ...demo,
 

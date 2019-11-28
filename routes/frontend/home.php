@@ -6,6 +6,11 @@ Route::get('/', function () {
 })->name('home');
 
 
+// Image resize from VUEJS
+//Route::post('image-introduction', function(Request $request){
+//    return $request;
+//})->name('image_introduction');
+
 
 Route::group(['middleware' => 'auth'], function () {
 

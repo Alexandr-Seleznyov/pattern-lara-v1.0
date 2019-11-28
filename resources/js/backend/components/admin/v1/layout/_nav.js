@@ -317,6 +317,29 @@ var users = [
     ];
 
 
+// --------------------------------------------------------------------
+// Laravel file manager - demo
+// --------------------------------------------------------------------
+var lfm = [
+    {
+        title: true,
+        name: 'Laravel File Manager',
+        class: '',
+    },
+    {
+        name: 'LFM - component',
+        url: '/admin/lfm',
+        icon: 'fa fa-file-o',
+    },
+
+    {
+        name: 'Demo - LFM',
+        url: '/admin/demo-lfm',
+        icon: 'fa fa-file-o',
+    },
+];
+
+
 
 
 
@@ -331,6 +354,7 @@ export default {
     },
 
       ...users,
+      ...lfm,
       //...demo,
   ]
 }
