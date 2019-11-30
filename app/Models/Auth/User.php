@@ -94,6 +94,26 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    /**
+     * Set new roles
+     *
+     * @param $roles array
+     */
+    public function newRoles($roles)
+    {
+        UsersRoles::where('users_id', $this->id)->delete();
+
+        foreach($roles as $value)
+        {
+            if ($value['id'] == 1) continue;
+            UsersRoles::create([
+                'users_id' => $this->id,
+                'roles_id' => $value['id'],
+            ]);
+        }
+
+    }
+
 
     /**
      * @return boolean

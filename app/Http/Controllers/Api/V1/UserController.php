@@ -98,6 +98,7 @@ class UserController extends Controller
         if($accessApi['status']){
             $user = User::findOrFail($id);
             $usersDetails = $user->usersDetails;
+            $roles = $request->get('roles');
 
             $validateDate = $request->validate([
                 'name' => 'required|max:55',
@@ -108,8 +109,29 @@ class UserController extends Controller
                 'date_birthday' => ['date', 'date_format:Y-m-d', 'nullable'],
             ]);
 
-            $user->update($validateDate);
-            $usersDetails->update($validateDate);
+
+            $isError = false;
+            $message = null;
+
+            try {
+                DB::transaction(function () use ($validateDate, &$user, $usersDetails, $roles) {
+                    $user->update($validateDate);
+                    $usersDetails->update($validateDate);
+                    $user->newRoles($roles);
+                });
+            } catch (\Exception $e) {
+                $isError = true;
+                $message = $e;
+            } catch (\Throwable $e) {
+                $isError = true;
+                $message = $e;
+            }
+
+            if($isError) {
+                return json_encode(['error_db' => json_encode($message)]);
+            }
+
+
 
             return $user;
         }
